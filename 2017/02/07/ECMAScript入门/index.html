@@ -13,8 +13,11 @@ ECMAScript 6.0（以下简称ES6）是JavaScript语言的下一代标准，已�
 Ecmascript 是 JavaScript 语言的标注规范
 
 
-解构赋值数据解构：
- 12let [a,b,c]=[123,456,788]console.log(a,b,c) //123 456 789">
+let和const
+let类似于var,也是用来定义变量的
+通过let定义的变量是块级作用域，只在当前代码块有效
+const也类似于var，用来定义常量
+通过const定义的常量，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ECMAScript入门">
 <meta property="og:url" content="http://yoursite.com/2017/02/07/ECMAScript入门/index.html">
@@ -24,9 +27,12 @@ ECMAScript 6.0（以下简称ES6）是JavaScript语言的下一代标准，已�
 Ecmascript 是 JavaScript 语言的标注规范
 
 
-解构赋值数据解构：
- 12let [a,b,c]=[123,456,788]console.log(a,b,c) //123 456 789">
-<meta property="og:updated_time" content="2017-02-07T04:35:36.510Z">
+let和const
+let类似于var,也是用来定义变量的
+通过let定义的变量是块级作用域，只在当前代码块有效
+const也类似于var，用来定义常量
+通过const定义的常量，">
+<meta property="og:updated_time" content="2017-02-07T14:13:23.908Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ECMAScript入门">
 <meta name="twitter:description" content="知识点Ecmascript 6
@@ -34,8 +40,11 @@ ECMAScript 6.0（以下简称ES6）是JavaScript语言的下一代标准，已�
 Ecmascript 是 JavaScript 语言的标注规范
 
 
-解构赋值数据解构：
- 12let [a,b,c]=[123,456,788]console.log(a,b,c) //123 456 789">
+let和const
+let类似于var,也是用来定义变量的
+通过let定义的变量是块级作用域，只在当前代码块有效
+const也类似于var，用来定义常量
+通过const定义的常量，">
   
     <link rel="alternative" href="/atom.xml" title="kermit的前端学习笔记" type="application/atom+xml">
   
@@ -200,8 +209,29 @@ Ecmascript 是 JavaScript 语言的标注规范
 <li>Ecmascript 是 JavaScript 语言的标注规范</li>
 </ul>
 <hr>
-<h3 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h3><p>数据解构：</p>
- <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> [a,b,c]=[<span class="number">123</span>,<span class="number">456</span>,<span class="number">788</span>]</div><div class="line"><span class="built_in">console</span>.log(a,b,c) <span class="comment">//123 456 789</span></div></pre></td></tr></table></figure>
+<h3 id="let和const"><a href="#let和const" class="headerlink" title="let和const"></a>let和const</h3><ul>
+<li>let类似于var,也是用来定义变量的</li>
+<li>通过let定义的变量是块级作用域，只在当前代码块有效</li>
+<li>const也类似于var，用来定义常量</li>
+<li>通过const定义的常量，定义的时候必须初始化</li>
+<li>let和const都没有作用域提升</li>
+<li>let和const在一个块作用域中都不能重复定义</li>
+</ul>
+<h3 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h3><h4 id="数据解构："><a href="#数据解构：" class="headerlink" title="数据解构："></a>数据解构：</h4> <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">let [a,b,c]=[123,456,788]</div><div class="line">console.log(a,b,c) //123 456 789</div><div class="line">//let的用处</div><div class="line">&lt;ul&gt;</div><div class="line">   &lt;li&gt;1&lt;/li&gt;</div><div class="line">   &lt;li&gt;2&lt;/li&gt;</div><div class="line">   &lt;li&gt;3&lt;/li&gt;</div><div class="line">   &lt;li&gt;4&lt;/li&gt;</div><div class="line">   &lt;li&gt;5&lt;/li&gt;</div><div class="line"> &lt;/ul&gt;</div><div class="line">   var lis = document.querySelectorAll('li')</div><div class="line">   for(let i = 0; i &lt; lis.length; i++) &#123;</div><div class="line">     lis[i].onclick = function () &#123;</div><div class="line">       alert(i)</div><div class="line">     &#125;</div><div class="line">   &#125;</div><div class="line">   console.log(i)</div></pre></td></tr></table></figure>
+<h4 id="对象解构："><a href="#对象解构：" class="headerlink" title="对象解构："></a>对象解构：</h4> <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> &#123;name,age&#125;=&#123;<span class="attr">name</span>:<span class="string">'jack'</span>,<span class="attr">age</span>:<span class="number">18</span>&#125;</div><div class="line"><span class="built_in">console</span>.log(name,age)<span class="comment">//jack 18</span></div></pre></td></tr></table></figure>
+<h4 id="函数参数解构"><a href="#函数参数解构" class="headerlink" title="函数参数解构:"></a>函数参数解构:</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">p1,&#123;p2=<span class="string">'aa'</span>,p3=<span class="string">'bb'</span>&#125;</span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(p1,p2,p3)</div><div class="line">&#125;</div><div class="line">f(<span class="string">'p1'</span>,&#123;<span class="attr">p2</span>:<span class="string">'p2'</span>&#125;) <span class="comment">//p1 p2 bb</span></div></pre></td></tr></table></figure>
+<h4 id="字符串结构"><a href="#字符串结构" class="headerlink" title="字符串结构"></a>字符串结构</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> [a,b,c,d,e]=<span class="string">'hello'</span></div><div class="line"><span class="built_in">console</span>.log(a,b,c,d,e) <span class="comment">//h e l l o</span></div></pre></td></tr></table></figure>
+<p>//模板字符串：凡是以后需要字符串拼接的地方都使用模板字符串<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> name=<span class="string">'jack'</span>,time=<span class="string">'today'</span></div><div class="line"><span class="string">`hell $(name),how are you $(time)`</span></div></pre></td></tr></table></figure></p>
+<h3 id="数组的扩展"><a href="#数组的扩展" class="headerlink" title="数组的扩展"></a>数组的扩展</h3><ol>
+<li>Array.from()将它转为真正的数组</li>
+<li>Array.of()将一组值，转为数组</li>
+<li><p>find()用于找出第一个符合条件的数组成员</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[<span class="number">1</span>,<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>].find(<span class="function"><span class="keyword">function</span>(<span class="params">value,index,arr</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> value&gt;<span class="number">9</span>;</div><div class="line"> &#125;)</div></pre></td></tr></table></figure>
+<p>4.findIndex方法返回第一个符合条件的数组成员的位置</p>
+</li>
+</ol>
+<hr>
+<h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> f=<span class="function"><span class="keyword">function</span>(<span class="params">v</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> v</div><div class="line">&#125;</div><div class="line"><span class="keyword">let</span> f=<span class="function"><span class="params">v</span>=&gt;</span>v+<span class="string">'a'</span></div><div class="line"><span class="built_in">console</span>.log(f(<span class="number">1</span>))</div><div class="line"><span class="comment">//如果有多个参数则必须加括号</span></div><div class="line"><span class="keyword">let</span> add=<span class="function">(<span class="params">x,y</span>)=&gt;</span>x+y</div><div class="line"><span class="built_in">console</span>.log(add(<span class="number">10</span>,<span class="number">20</span>))</div><div class="line"><span class="comment">//如果方法有多条执行语法，则必须加&#123;&#125;</span></div><div class="line"><span class="keyword">let</span> add=<span class="function">(<span class="params">x,y</span>)=&gt;</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(x,y)</div><div class="line">  <span class="keyword">return</span> x+y</div><div class="line">&#125;</div><div class="line"><span class="comment">//箭头函数最好用在匿名函数的地方</span></div><div class="line"><span class="keyword">let</span> arr=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line">arr.forEach(<span class="function"><span class="params">n</span>=&gt;</span><span class="built_in">console</span>.log(n))</div></pre></td></tr></table></figure>
 
       
 
