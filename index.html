@@ -155,6 +155,90 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-复习Express" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/08/复习Express/">复习Express</a>
+    </h1>
+  
+
+        
+        <a href="/2017/02/08/复习Express/" class="archive-article-date">
+  	<time datetime="2017-02-08T01:16:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="–save和–save-dev"><a href="#–save和–save-dev" class="headerlink" title="–save和–save-dev"></a>–save和–save-dev</h3><ol>
+<li>前者是依赖保存到package.json文件中的dependencies选项中</li>
+<li>后者，是保存到devDependencies选项中</li>
+<li>两者都是通过执行 npm install 来安装依赖包</li>
+<li>后者 在上线运行的时候 开发依赖项就不在需要了 就可以通过 npm install –production 命令仅仅安装dependencies</li>
+</ol>
+<hr>
+<p>babel 转码器</p>
+<ul>
+<li>babel-cli：命令行转码</li>
+<li>babel-register：实时转码，实用开发环境</li>
+<li>babel-core：调用babel的api进行转码</li>
+</ul>
+<p>babel-cli：</p>
+<ul>
+<li>一种方式就是全局安装：npm install -g babel-cli</li>
+<li>只要全局安装了 就会在命令行多出一个命令：babel</li>
+<li>通过 npm root -g查看全局包的安装目录</li>
+<li>这里如果使用全局安装了babel-cli进行转码是没有问题的，如果一旦项目给了别人，别人不知道你使用了这个转码工具，解决方式就是将</li>
+<li>babel-cli安装到本地项目中（npm install –save-dev babel-cli）</li>
+<li>这种第三方命令行工具如果安装到本地项目，会在node_modules中生成一个目录bin，然后第三方命令工具会将可执行文件放到该目录中</li>
+<li>如果使用 则通过packagejson文件中的scripts字段来配置使用(npm run build)</li>
+</ul>
+<hr>
+<p>babel-register:(适合开发阶段实时编码转换)</p>
+<p>第一：安装babel-register<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save-dev babel-register</div></pre></td></tr></table></figure></p>
+<p>第二：添加一个傀儡文件（main.js）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>(<span class="string">'babel-register'</span>)</div><div class="line"><span class="built_in">require</span>(<span class="string">'你的核心功能代码入口文件'</span>)</div><div class="line"><span class="comment">//开发阶段的（'./src/app'）</span></div></pre></td></tr></table></figure>
+<p>第三:使用node执行<code>main.js</code> 而不是你的入口文件</p>
+<hr>
+<p>生产环境：把node_modules删掉 然后安装npm install –production </p>
+<h2 id="Express-基于Node-js平台，快速，开发web框架"><a href="#Express-基于Node-js平台，快速，开发web框架" class="headerlink" title="Express 基于Node.js平台，快速，开发web框架"></a>Express 基于Node.js平台，快速，开发web框架</h2><h3 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world"></a>hello world</h3> <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//app.js 需要1：用户访问/响应hello world</span></div><div class="line"><span class="keyword">const</span> express=<span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"><span class="comment">//1.调用express（）方法 得到一个app实例接口对象</span></div><div class="line"><span class="keyword">const</span> app=express()</div><div class="line"><span class="comment">//这个表示一个中间件</span></div><div class="line"><span class="comment">//任何请求进来都会执行对应的处理函数</span></div><div class="line"><span class="comment">//改代码内部如果不发送响应或者不做进一步处理代码会一直停在这里</span></div><div class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123;</div><div class="line">   <span class="comment">//cosole.log('111')</span></div><div class="line">   <span class="comment">//res.end('hello express')</span></div><div class="line">   <span class="keyword">const</span> urlPath=req.path 不包括查询字符串</div><div class="line">   <span class="comment">//</span></div><div class="line">    <span class="keyword">if</span>(req.path.startsWith(<span class="string">'public/'</span>)&#123;</div><div class="line">       <span class="keyword">const</span> filePath=<span class="string">`.<span class="subst">$&#123;urlPath&#125;</span>`</span><span class="comment">//这里加.的原因是</span></div><div class="line">       <span class="comment">//因为如果读文件是以/开头会去当前文件的根目录</span></div><div class="line">        fs.readFile(filePath,(err,data)=&gt;&#123;</div><div class="line">            <span class="keyword">if</span>(err)&#123;</div><div class="line">               <span class="keyword">return</span> res.end(<span class="string">'404 not found'</span>)</div><div class="line">            &#125;</div><div class="line">            res.end(data)</div><div class="line">          &#125;)</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">      next()<span class="comment">//如果请求路径不是以/public/开头的，则调用next函数（不确定）</span></div><div class="line">      <span class="comment">//这里调用next的目的就是告诉express继续往后执行:中间件</span></div><div class="line">      <span class="comment">//具体执行哪个中间件，取决于对应的中间件的类型</span></div><div class="line">    &#125;</div><div class="line">    next()</div><div class="line">  &#125;)</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//2.通过app设置对应的路径 对应的请求处理函数</span></div><div class="line"><span class="comment">//回调处理函数中:</span></div><div class="line"><span class="comment">//req 请求对象：用来获取当前客户端的请求数据或者请求报文信息</span></div><div class="line"><span class="comment">//例如 req.query用来获取查询字符串数据  req.method用来当前请求方法</span></div><div class="line"><span class="comment">//res响应对象:用来向当前请求客户端发送消息数据</span></div><div class="line"><span class="comment">//   例如 res.write('响应数据')  res.end（）结束响应</span></div><div class="line">app.get(<span class="string">'/'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</div><div class="line">      res.write(<span class="string">"hello"</span>)</div><div class="line">      res.end()</div><div class="line">      <span class="comment">//end用来结束响应的同时发送响应数据</span></div><div class="line">  &#125;)</div><div class="line">  <span class="comment">//3.开启监听 启动服务器</span></div><div class="line">  app.listen(<span class="number">3000</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"running"</span>)</div><div class="line">    &#125;)</div></pre></td></tr></table></figure>
+<h3 id="基本路由"><a href="#基本路由" class="headerlink" title="基本路由"></a>基本路由</h3><p> 根据不同的请求路径分发到具体的请求处理函数</p>
+<h3 id="处理静态资源"><a href="#处理静态资源" class="headerlink" title="处理静态资源"></a>处理静态资源</h3><h3 id="模板引擎"><a href="#模板引擎" class="headerlink" title="模板引擎"></a>模板引擎</h3><h3 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h3><p>中间件：用来处理http请求的一个具体的环节（可能要执行某个具体的处理函数）<br>中间件一般都是通过修改req或者res对象来为后续的处理提供便利的使用<br>中间件分类：<br>use(function(req,res,next){})不关心请求方法和请求路径 没有具体路由规则，任何请求都能进来<br>use（’请求路径’,function（req，res，next）{}）不关心请求方法，只关心请求路径的中间件<br>get(‘请求路径’，function(req,res,next){}) 具体路由规则中间件<br>post(“请求路径”，function(req,res,next){})<br>中间件的作用：<br>   1.处理静态资源<br>  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">app.use(<span class="string">'/public'</span>,express.static(<span class="string">'开放目录的路径'</span>))</div><div class="line">app.use(<span class="function">(<span class="params">req,res,next</span>)=&gt;</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="number">111</span>);</div><div class="line">  next()</div><div class="line">&#125;)</div><div class="line">app.use(<span class="function">(<span class="params">req,res,next</span>)=&gt;</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="number">222</span>);</div><div class="line">  next();</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">//关系请求路径</span></div><div class="line">app.use(<span class="string">'/a'</span>,(req,res,next)=&gt;&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'use/a'</span>);</div><div class="line">&#125;)</div><div class="line"></div><div class="line">app.use(<span class="function">(<span class="params">req,res,next</span>)=&gt;</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="number">333</span>);</div><div class="line"></div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/02/08/复习Express/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-ECMAScript入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -343,65 +427,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/02/05/Git入门指南/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/05/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2017/02/05/hello-world/" class="archive-article-date">
-  	<time datetime="2017-02-05T10:26:22.122Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/05/hello-world/">展开全文 >></a>
         </p>
       
 
