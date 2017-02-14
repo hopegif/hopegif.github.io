@@ -155,6 +155,268 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-在线教育管理平台" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h3><h4 id="前后端交互"><a href="#前后端交互" class="headerlink" title="前后端交互"></a>前后端交互</h4><pre><code>1.要先通过三次握手连接 
+2.当客户端与服务器建立连接完成之后，将用户输入的地址按照http协议封装成请求报文
+  然后通过网络发送给服务器
+3.在以上的请求报文中，最后有一个空行，当有请求报文体的时候(POST请求),报文体数据
+  会在请求报文的报文头之后加一个空行，然后是报文体
+</code></pre><ul>
+<li>请求头<ul>
+<li>第一行：请求方法 请求路径 协议版本号</li>
+<li>以键值对组成的请求报文首部字段</li>
+<li>key：value</li>
+</ul>
+</li>
+<li>空行</li>
+<li><p>请求体</p>
+<ul>
+<li>如果是普通表单POST请求，则报文体内容就是key=value&amp;key=value</li>
+<li>如果是multipart-form/data的形式，则内容：</li>
+</ul>
+</li>
+<li><p>响应报文头</p>
+<ul>
+<li>协议版本号 状态码 状态短语</li>
+<li>响应首部字段 有key：value的格式组成</li>
+<li>响应日期</li>
+<li>Connection：key-alive表示连接<ul>
+<li>只有经过一段时间，没有通信之后会自动断开连接</li>
+<li>这就是http的长连接</li>
+</ul>
+</li>
+<li>空行</li>
+<li>响应报文体</li>
+</ul>
+</li>
+</ul>
+<p>HTTP客户端会根据服务端响应的消息数据做处理：<br>浏览器会将响应报文体内容渲染到网页当中</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/02/14/在线教育管理平台/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-在Node中使用的第三方包" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/13/在Node中使用的第三方包/">cookie-demo知识点</a>
+    </h1>
+  
+
+        
+        <a href="/2017/02/13/在Node中使用的第三方包/" class="archive-article-date">
+  	<time datetime="2017-02-13T09:29:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">const http=require(&apos;http&apos;)</div><div class="line">http.createServer((req,res) =&gt;&#123;</div><div class="line"> //关于从http协议角度使用cookie</div><div class="line"> //1.通过响应报文在报文头中加入一个字段：Set-Cookie值就是key=value的格式</div><div class="line"> //2.当浏览器收到服务端响应回来的数据的时候,发送响应头中有一个Set-Cookie</div><div class="line"> //然后浏览器会将该Cookie对应的数据保存起来（会话Cookie,持久化）</div><div class="line"> //当下一次浏览器再次访问该服务的时候，浏览器会自动将保存的所有Cookie放到请求报文头中都带上来</div><div class="line"> //然后服务端就可以根据当前客户端的请求报文中的cookie字段来进行判断</div><div class="line">  </div><div class="line">  const cookie=req.headers.cookie</div><div class="line">  if(!cookie)&#123;</div><div class="line">    res.writeHead(200,&#123;</div><div class="line">   &apos;Set-Cookie&apos;:&apos;isFirst=true&apos;</div><div class="line">   &#125;)</div><div class="line">  &#125; </div><div class="line">   res.end(&apos;hello first&apos;)</div><div class="line"> &#125;)</div><div class="line"> .listen（5000，()=&gt;&#123;</div><div class="line">   console.log(&apos;running&apos;)；</div><div class="line">   &#125;）</div></pre></td></tr></table></figure>
+<p>在express中使用的中间件(cookie-parser)<br>安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yarn add cookie-parser</div></pre></td></tr></table></figure></p>
+<p>使用：<br> import cookieParser from ‘cookie-parser’</p>
+<p> //挂载cookie-parser中间件 放在路由之前<br>  app.use(cookieParser())<br>  //cookie-parser中间件做两件事儿<br>  //req.cookies通过该中间件自动将当前请求报文中的cookie解析为一个对象挂载到req.cookie<br>  //res.cookie(name,value)通过res.cookie可以向当前请求客户端发送cookie数据</p>
+<p>  //登录成功，利用cookie记住用户名<br>  res.cookie(‘username’,username)</p>
+<h3 id="浏览器端cookie"><a href="#浏览器端cookie" class="headerlink" title="浏览器端cookie"></a>浏览器端cookie</h3><ul>
+<li>document.cookie<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function getCookies()&#123;</div><div class="line">  var cookies=&#123;&#125;;</div><div class="line">  document.cookie.split(';').forEach(function(cookie)&#123;</div><div class="line">     if(cookies)&#123;</div><div class="line">      var item=cookie.split('=')</div><div class="line">      cookies[item[0]]</div><div class="line">     &#125;</div><div class="line">      </div><div class="line">    &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">if(data.err_code===0)&#123;</div><div class="line">  //登陆成功</div><div class="line">  document.cookie='username='$(#username).val()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h3 id="Session技术"><a href="#Session技术" class="headerlink" title="Session技术"></a>Session技术</h3><p>  /*</p>
+<pre><code>在request请求对象上回增加一个属性req.session
+req.session会自动根据当前请求客户端中携带的Session-key找到对应的存储数据对象
+
+req.session.key=value 设置
+req.session.key 获取
+</code></pre><p>   */<br>  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//配置挂载session的中间件</span></div><div class="line">   app.use(session(&#123;</div><div class="line">    <span class="attr">secret</span>:<span class="string">'itcast'</span>,</div><div class="line">    <span class="attr">resave</span>:<span class="literal">false</span>,</div><div class="line">    <span class="attr">saveUninititalized</span>:<span class="literal">true</span></div><div class="line">    &#125;))</div><div class="line"></div><div class="line">    <span class="comment">//登陆成功，通过session记录登陆状态</span></div><div class="line">  <span class="comment">// req.session.isLogin=true</span></div><div class="line">   req.session.manager=manager</div></pre></td></tr></table></figure></p>
+<h2 id="在Node中使用formidable处理文件上传"><a href="#在Node中使用formidable处理文件上传" class="headerlink" title="在Node中使用formidable处理文件上传"></a>在Node中使用formidable处理文件上传</h2><p>第一：安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yarn add formidable</div></pre></td></tr></table></figure></p>
+<p>第二：基本使用<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> formidable=<span class="built_in">require</span>(<span class="string">'formidable'</span>),</div><div class="line">    http=<span class="built_in">require</span>(<span class="string">'http'</span>),</div><div class="line">    util=<span class="built_in">require</span>(<span class="string">'util'</span>)</div><div class="line"></div><div class="line">....</div></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/02/13/在Node中使用的第三方包/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-mongodb知识点" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/10/mongodb知识点/">mongodb知识点</a>
+    </h1>
+  
+
+        
+        <a href="/2017/02/10/mongodb知识点/" class="archive-article-date">
+  	<time datetime="2017-02-10T01:10:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><h3 id="MongoDB"><a href="#MongoDB" class="headerlink" title="MongoDB"></a>MongoDB</h3><h4 id="存储结构"><a href="#存储结构" class="headerlink" title="存储结构"></a>存储结构</h4><ul>
+<li>一个计算机可以由一个数据库服务实例</li>
+<li>一个数据服务实例上可以有多个数据库</li>
+<li>一个数据库中可以有多个集合<ul>
+<li>集合根据数据的业务类型划分</li>
+<li>例如 用户数据、商品信息数据、广告信息数据</li>
+<li>对数据进行分门别类的存储</li>
+<li>集合在mongodb中就类似于数组</li>
+<li>一个集合中可以有多个文档</li>
+<li>文档在mongodb中就是一个类似于josn的数据对象</li>
+<li>文档对象是动态的 可以随意的生成</li>
+<li>为了便于管理，最好一个集合中存储的数据一定要保持文档结构的统一</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  collection1:[</div><div class="line">      &#123;文档1&#125;,</div><div class="line">      &#123;文档2&#125;,</div><div class="line">      &#123;文档3&#125;</div><div class="line">  ],</div><div class="line">  collection2：[</div><div class="line"></div><div class="line">  ],</div><div class="line">  collection3:[</div><div class="line"></div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="mongoose"><a href="#mongoose" class="headerlink" title="mongoose"></a>mongoose</h2><p> 安装：<br> <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yarn add mongoose</div></pre></td></tr></table></figure></p>
+<h3 id="在node中使用formidable处理文件上传"><a href="#在node中使用formidable处理文件上传" class="headerlink" title="在node中使用formidable处理文件上传"></a>在node中使用formidable处理文件上传</h3><p>  第一：安装<br>     npm install –save formidable<br>  官方文档：npmjs</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/02/10/mongodb知识点/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-jsonp知识点" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/08/jsonp知识点/">jsonp知识点</a>
+    </h1>
+  
+
+        
+        <a href="/2017/02/08/jsonp知识点/" class="archive-article-date">
+  	<time datetime="2017-02-08T11:58:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="核心原理"><a href="#核心原理" class="headerlink" title="核心原理"></a>核心原理</h3> <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"http:127.0.0.1:3000"</span>&gt;&lt;script&gt;</div><div class="line">&lt;script&gt;</div><div class="line">  //异步请求跨域限制（ajax）</div><div class="line">  //不同域名 协议 端口号</div><div class="line"></div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<h3 id="Yarn"><a href="#Yarn" class="headerlink" title="Yarn"></a>Yarn</h3><p> Yarn 是一个Facebook开源的一个类似于npm的一个包管理工具</p>
+<p> 安装：<br> <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g yarn</div></pre></td></tr></table></figure></p>
+<p> 使用：<br> yarn add 包名@版本号 –offline 本地必须有</p>
+<p> yarn init =》npm init<br> yarn add 包名 =》npm install –save 包名<br> yarn install =》 npm install<br> yarn remove 包名 =》npm uninstall 包名<br> yarn global add 包名 =》npm install -g 包名<br> yarn global remove 包名 =》 </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/02/08/jsonp知识点/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-复习Express" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -208,7 +470,9 @@
 <p>生产环境：把node_modules删掉 然后安装npm install –production </p>
 <h2 id="Express-基于Node-js平台，快速，开发web框架"><a href="#Express-基于Node-js平台，快速，开发web框架" class="headerlink" title="Express 基于Node.js平台，快速，开发web框架"></a>Express 基于Node.js平台，快速，开发web框架</h2><h3 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world"></a>hello world</h3> <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//app.js 需要1：用户访问/响应hello world</span></div><div class="line"><span class="keyword">const</span> express=<span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"><span class="comment">//1.调用express（）方法 得到一个app实例接口对象</span></div><div class="line"><span class="keyword">const</span> app=express()</div><div class="line"><span class="comment">//这个表示一个中间件</span></div><div class="line"><span class="comment">//任何请求进来都会执行对应的处理函数</span></div><div class="line"><span class="comment">//改代码内部如果不发送响应或者不做进一步处理代码会一直停在这里</span></div><div class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123;</div><div class="line">   <span class="comment">//cosole.log('111')</span></div><div class="line">   <span class="comment">//res.end('hello express')</span></div><div class="line">   <span class="keyword">const</span> urlPath=req.path 不包括查询字符串</div><div class="line">   <span class="comment">//</span></div><div class="line">    <span class="keyword">if</span>(req.path.startsWith(<span class="string">'public/'</span>)&#123;</div><div class="line">       <span class="keyword">const</span> filePath=<span class="string">`.<span class="subst">$&#123;urlPath&#125;</span>`</span><span class="comment">//这里加.的原因是</span></div><div class="line">       <span class="comment">//因为如果读文件是以/开头会去当前文件的根目录</span></div><div class="line">        fs.readFile(filePath,(err,data)=&gt;&#123;</div><div class="line">            <span class="keyword">if</span>(err)&#123;</div><div class="line">               <span class="keyword">return</span> res.end(<span class="string">'404 not found'</span>)</div><div class="line">            &#125;</div><div class="line">            res.end(data)</div><div class="line">          &#125;)</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">      next()<span class="comment">//如果请求路径不是以/public/开头的，则调用next函数（不确定）</span></div><div class="line">      <span class="comment">//这里调用next的目的就是告诉express继续往后执行:中间件</span></div><div class="line">      <span class="comment">//具体执行哪个中间件，取决于对应的中间件的类型</span></div><div class="line">    &#125;</div><div class="line">    next()</div><div class="line">  &#125;)</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//2.通过app设置对应的路径 对应的请求处理函数</span></div><div class="line"><span class="comment">//回调处理函数中:</span></div><div class="line"><span class="comment">//req 请求对象：用来获取当前客户端的请求数据或者请求报文信息</span></div><div class="line"><span class="comment">//例如 req.query用来获取查询字符串数据  req.method用来当前请求方法</span></div><div class="line"><span class="comment">//res响应对象:用来向当前请求客户端发送消息数据</span></div><div class="line"><span class="comment">//   例如 res.write('响应数据')  res.end（）结束响应</span></div><div class="line">app.get(<span class="string">'/'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</div><div class="line">      res.write(<span class="string">"hello"</span>)</div><div class="line">      res.end()</div><div class="line">      <span class="comment">//end用来结束响应的同时发送响应数据</span></div><div class="line">  &#125;)</div><div class="line">  <span class="comment">//3.开启监听 启动服务器</span></div><div class="line">  app.listen(<span class="number">3000</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"running"</span>)</div><div class="line">    &#125;)</div></pre></td></tr></table></figure>
 <h3 id="基本路由"><a href="#基本路由" class="headerlink" title="基本路由"></a>基本路由</h3><p> 根据不同的请求路径分发到具体的请求处理函数</p>
-<h3 id="处理静态资源"><a href="#处理静态资源" class="headerlink" title="处理静态资源"></a>处理静态资源</h3><h3 id="模板引擎"><a href="#模板引擎" class="headerlink" title="模板引擎"></a>模板引擎</h3><h3 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h3><p>中间件：用来处理http请求的一个具体的环节（可能要执行某个具体的处理函数）<br>中间件一般都是通过修改req或者res对象来为后续的处理提供便利的使用<br>中间件分类：<br>use(function(req,res,next){})不关心请求方法和请求路径 没有具体路由规则，任何请求都能进来<br>use（’请求路径’,function（req，res，next）{}）不关心请求方法，只关心请求路径的中间件<br>get(‘请求路径’，function(req,res,next){}) 具体路由规则中间件<br>post(“请求路径”，function(req,res,next){})<br>中间件的作用：<br>   1.处理静态资源<br>  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">app.use(<span class="string">'/public'</span>,express.static(<span class="string">'开放目录的路径'</span>))</div><div class="line">app.use(<span class="function">(<span class="params">req,res,next</span>)=&gt;</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="number">111</span>);</div><div class="line">  next()</div><div class="line">&#125;)</div><div class="line">app.use(<span class="function">(<span class="params">req,res,next</span>)=&gt;</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="number">222</span>);</div><div class="line">  next();</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">//关系请求路径</span></div><div class="line">app.use(<span class="string">'/a'</span>,(req,res,next)=&gt;&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'use/a'</span>);</div><div class="line">&#125;)</div><div class="line"></div><div class="line">app.use(<span class="function">(<span class="params">req,res,next</span>)=&gt;</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="number">333</span>);</div><div class="line"></div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h3 id="处理静态资源"><a href="#处理静态资源" class="headerlink" title="处理静态资源"></a>处理静态资源</h3><h3 id="模板引擎"><a href="#模板引擎" class="headerlink" title="模板引擎"></a>模板引擎</h3><h3 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h3><p>中间件：用来处理http请求的一个具体的环节（可能要执行某个具体的处理函数）<br>中间件一般都是通过修改req或者res对象来为后续的处理提供便利的使用<br>中间件分类：<br>use(function(req,res,next){})不关心请求方法和请求路径 没有具体路由规则，任何请求都能进来<br>use（’请求路径’,function（req，res，next）{}）不关心请求方法，只关心请求路径的中间件<br>get(‘请求路径’，function(req,res,next){}) 具体路由规则中间件<br>post(“请求路径”，function(req,res,next){})<br>中间件的作用：<br>   1.处理静态资源<br>  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">app.use(<span class="string">'/public'</span>,express.static(<span class="string">'开放目录的路径'</span>))</div><div class="line">app.use(<span class="function">(<span class="params">req,res,next</span>)=&gt;</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="number">111</span>);</div><div class="line">  next()</div><div class="line">&#125;)</div><div class="line">app.use(<span class="function">(<span class="params">req,res,next</span>)=&gt;</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="number">222</span>);</div><div class="line">  <span class="comment">//在http中 没有请求就没有响应，服务端不可能主动给客户端发请求</span></div><div class="line">  <span class="comment">//对于一次请求来说 只能响应一次 只有第一次生效</span></div><div class="line">  next();</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">//关系请求路径</span></div><div class="line">app.use(<span class="string">'/a'</span>,(req,res,next)=&gt;&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'use/a'</span>);</div><div class="line">&#125;)</div><div class="line"></div><div class="line">app.use(<span class="function">(<span class="params">req,res,next</span>)=&gt;</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="number">333</span>);</div><div class="line"></div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<hr>
+<p>中间件-404<br> <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> express=<span class="built_in">require</span>(<span class="string">'express'</span>)</div><div class="line"><span class="keyword">const</span> app=express() </div><div class="line"><span class="comment">//404 处理放在最后</span></div><div class="line">app.use(<span class="function">(<span class="params">req,res,nex</span>)=&gt;</span>&#123;</div><div class="line">res.end(<span class="string">'404'</span>)</div><div class="line">  &#125;)</div><div class="line"></div><div class="line"> <span class="string">`</span></div></pre></td></tr></table></figure></p>
 
       
 
@@ -612,7 +876,7 @@
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">性格开朗、生活态度乐观、坚强并具有自我激励意识。&lt;br&gt;自学能力强，对新技术有很强的学习热情。&lt;br&gt;善于沟通，待人诚恳，具备良好的团队合作精神、高度的工作责任心和敬业精神，稳重、踏实，乐于在挑战性强、节奏快的环境下工作</div>
   	  	
     	</section>
     
