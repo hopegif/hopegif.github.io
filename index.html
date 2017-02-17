@@ -155,6 +155,136 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-angular学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/17/angular学习/">angular学习</a>
+    </h1>
+  
+
+        
+        <a href="/2017/02/17/angular学习/" class="archive-article-date">
+  	<time datetime="2017-02-17T01:42:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##angular学习知识</p>
+<ul>
+<li>我该如何学习一个新东西<ul>
+<li>what how why</li>
+<li>上官网 看hello-word 官方指南教程 找一些视频资料 技术系统博客</li>
+<li>做demo 最后过渡你的项目中<br>-什么是框架和库</li>
+<li>库是由你亲自去调用对应的API，大部分功能逻辑由你自己去完成</li>
+<li>框架就是一个大平台，提供了已经实现的功能<ul>
+<li>学习使用框架 ，就是学习框架的规则</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/02/17/angular学习/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-知识点整理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/14/知识点整理/">第三方包的使用</a>
+    </h1>
+  
+
+        
+        <a href="/2017/02/14/知识点整理/" class="archive-article-date">
+  	<time datetime="2017-02-14T07:23:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="服务端跳转和客户端跳转"><a href="#服务端跳转和客户端跳转" class="headerlink" title="服务端跳转和客户端跳转"></a>服务端跳转和客户端跳转</h3><ul>
+<li>window.location.href<ul>
+<li>让浏览器重定向到某个路径</li>
+<li>get请求</li>
+</ul>
+</li>
+<li>res.redirect(‘跳转路径’)<ul>
+<li>用于http交互</li>
+</ul>
+</li>
+</ul>
+<h3 id="关于一个集合中的文档内部的结构嵌套关系"><a href="#关于一个集合中的文档内部的结构嵌套关系" class="headerlink" title="关于一个集合中的文档内部的结构嵌套关系"></a>关于一个集合中的文档内部的结构嵌套关系</h3> <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  _id:1,</div><div class="line">  name:'创业设计',</div><div class="line">  parent_id:0</div><div class="line">&#125;</div><div class="line">&#123;</div><div class="line">  _id:2,</div><div class="line">  name:'数学物理',</div><div class="line">  parent_id:0</div><div class="line">&#125;</div><div class="line">&#123;</div><div class="line">  _id:3,</div><div class="line">  name:'影视设计',</div><div class="line">  parent_id:1</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="图片处理"><a href="#图片处理" class="headerlink" title="图片处理"></a>图片处理</h3><h4 id="上传图片预览"><a href="#上传图片预览" class="headerlink" title="上传图片预览"></a>上传图片预览</h4><ul>
+<li></li>
+</ul>
+<h4 id="图片裁切"><a href="#图片裁切" class="headerlink" title="图片裁切"></a>图片裁切</h4><p>GraphicsMagick</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/02/14/知识点整理/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-在线教育管理平台" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -251,7 +381,9 @@
 <p> //挂载cookie-parser中间件 放在路由之前<br>  app.use(cookieParser())<br>  //cookie-parser中间件做两件事儿<br>  //req.cookies通过该中间件自动将当前请求报文中的cookie解析为一个对象挂载到req.cookie<br>  //res.cookie(name,value)通过res.cookie可以向当前请求客户端发送cookie数据</p>
 <p>  //登录成功，利用cookie记住用户名<br>  res.cookie(‘username’,username)</p>
 <h3 id="浏览器端cookie"><a href="#浏览器端cookie" class="headerlink" title="浏览器端cookie"></a>浏览器端cookie</h3><ul>
-<li>document.cookie<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function getCookies()&#123;</div><div class="line">  var cookies=&#123;&#125;;</div><div class="line">  document.cookie.split(';').forEach(function(cookie)&#123;</div><div class="line">     if(cookies)&#123;</div><div class="line">      var item=cookie.split('=')</div><div class="line">      cookies[item[0]]</div><div class="line">     &#125;</div><div class="line">      </div><div class="line">    &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">if(data.err_code===0)&#123;</div><div class="line">  //登陆成功</div><div class="line">  document.cookie='username='$(#username).val()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<li><p>document.cookie</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">function getCookies()&#123;</div><div class="line">  var cookies=&#123;&#125;;</div><div class="line">  document.cookie.split(';').forEach(function(cookie)&#123;</div><div class="line">     if(cookies)&#123;</div><div class="line">      var item=cookie.split('=')</div><div class="line">      cookies[item[0].trim()]=item[1].trim()</div><div class="line">     &#125;</div><div class="line">      return cookies</div><div class="line">    &#125;)</div><div class="line">&#125;</div><div class="line">var cookies=getCookies()</div><div class="line">if(cookies['username'])&#123;</div><div class="line">  $('#username').val(cookies['username'])</div><div class="line">&#125;</div><div class="line"></div><div class="line">if(data.err_code===0)&#123;</div><div class="line">  //登陆成功</div><div class="line">  document.cookie='username='$(#username).val()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>-cookie 适合于保存一些对安全性不太关心的业务<br>-记住用户名 购物车<br>-cookie在占用大小上有4kb的限制<br>-cookie由于可以直接在客户端进行操作，所以不安全<br>-例如 腾讯视频：如果使用cookie：isVIP=true来作为会员的校验</p>
 </li>
 </ul>
 <hr>
@@ -261,7 +393,15 @@ req.session会自动根据当前请求客户端中携带的Session-key找到对�
 
 req.session.key=value 设置
 req.session.key 获取
-</code></pre><p>   */<br>  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//配置挂载session的中间件</span></div><div class="line">   app.use(session(&#123;</div><div class="line">    <span class="attr">secret</span>:<span class="string">'itcast'</span>,</div><div class="line">    <span class="attr">resave</span>:<span class="literal">false</span>,</div><div class="line">    <span class="attr">saveUninititalized</span>:<span class="literal">true</span></div><div class="line">    &#125;))</div><div class="line"></div><div class="line">    <span class="comment">//登陆成功，通过session记录登陆状态</span></div><div class="line">  <span class="comment">// req.session.isLogin=true</span></div><div class="line">   req.session.manager=manager</div></pre></td></tr></table></figure></p>
+</code></pre><p>   */<br>  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//配置挂载session的中间件</span></div><div class="line">   app.use(session(&#123;</div><div class="line">    <span class="attr">secret</span>:<span class="string">'itcast'</span>,</div><div class="line">    <span class="attr">resave</span>:<span class="literal">false</span>,</div><div class="line">    <span class="attr">saveUninititalized</span>:<span class="literal">true</span></div><div class="line">    &#125;))</div><div class="line"></div><div class="line">    <span class="comment">//登陆成功，通过session记录登陆状态</span></div><div class="line">  <span class="comment">// req.session.isLogin=true</span></div><div class="line">   req.session.manager=manager</div><div class="line">   req.session.cookie.maxAge=<span class="number">1000</span>*<span class="number">60</span>*<span class="number">60</span>*<span class="number">24</span>*<span class="number">3</span><span class="comment">//设置当前客户端登陆过期时间（3天）</span></div></pre></td></tr></table></figure></p>
+<ul>
+<li>session不是新技术 而是在原有的cookie基础上做的一个更高级的状态管理<br>+在客户端通过cookie保存钥匙<br>+在服务端保存状态数据<ul>
+<li>取值：根据当前客户端的钥匙去取值</li>
+<li>赋值：根据当前客户端的钥匙去赋值</li>
+</ul>
+</li>
+<li>cookie和session的区别</li>
+</ul>
 <h2 id="在Node中使用formidable处理文件上传"><a href="#在Node中使用formidable处理文件上传" class="headerlink" title="在Node中使用formidable处理文件上传"></a>在Node中使用formidable处理文件上传</h2><p>第一：安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yarn add formidable</div></pre></td></tr></table></figure></p>
 <p>第二：基本使用<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> formidable=<span class="built_in">require</span>(<span class="string">'formidable'</span>),</div><div class="line">    http=<span class="built_in">require</span>(<span class="string">'http'</span>),</div><div class="line">    util=<span class="built_in">require</span>(<span class="string">'util'</span>)</div><div class="line"></div><div class="line">....</div></pre></td></tr></table></figure></p>
 
