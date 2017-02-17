@@ -189,6 +189,46 @@
 </ul>
 </li>
 </ul>
+<h3 id="SPA-单页面应用程序"><a href="#SPA-单页面应用程序" class="headerlink" title="SPA(单页面应用程序)"></a>SPA(单页面应用程序)</h3><ul>
+<li>利用锚点改变网页内容<br>1.监听hash的变化<br>2.拿到hash值<br>3.根据不同的hash发送不同的请求，拿到对应的html字符串<br>4.将拿到的字符串绑定到页面容器中</li>
+</ul>
+<pre><code class="js"><span class="keyword">var</span> $container = $(<span class="string">'.container'</span>)
+<span class="comment">// 以下就是在单页应用中最简单的路由使用</span>
+<span class="built_in">window</span>.addEventListener(<span class="string">'hashchange'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>{
+  <span class="keyword">var</span> hash = <span class="built_in">window</span>.location.hash.substr(<span class="number">1</span>)
+  <span class="built_in">console</span>.log(hash)
+  <span class="keyword">switch</span> (hash) {
+    <span class="keyword">case</span> <span class="string">'/'</span>:
+      renderHtml(<span class="string">'/find-music.html'</span>)
+      <span class="keyword">break</span>
+    <span class="keyword">case</span> <span class="string">'/my'</span>:
+      renderHtml(<span class="string">'/my-music.html'</span>)
+      <span class="keyword">break</span>
+    <span class="keyword">case</span> <span class="string">'/friend'</span>:
+      renderHtml(<span class="string">'/friend.html'</span>)
+      <span class="keyword">break</span>
+    <span class="keyword">default</span>:
+      $container.html(<span class="string">'404 Not Found.'</span>)
+      <span class="keyword">break</span>
+  }
+})
+
+<span class="function"><span class="keyword">function</span> <span class="title">renderHtml</span>(<span class="params">url</span>) </span>{
+  $.ajax({
+    <span class="attr">url</span>: url,
+    <span class="attr">type</span>: <span class="string">'get'</span>
+  }).then(<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>{
+    $container.html(data)
+  })
+}
+
+$(<span class="string">'#btn'</span>).on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>{
+  $(<span class="string">'#test'</span>).val(<span class="string">'哈哈'</span>)
+})
+</code></pre>
+<hr>
+<p>什么是AngularJS</p>
+<p>1.前端高级javascript框架<br>2.轻松构建SPA应用程序<br>3.通过指令扩展HTML，通过表达式绑定数据到HTML</p>
 
       
 
